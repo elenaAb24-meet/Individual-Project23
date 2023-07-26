@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feelings Survey</title>
+    <title>Daily Feelings Survey</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -16,19 +16,27 @@
                 <option value="sad">Sad</option>
                 <option value="angry">Angry</option>
                 <option value="calm">Calm</option>
-                <!-- Add more feelings as needed -->
+                <option value="excited">Excited</option>
+                <option value="worried">Worried</option>
+                <option value="confused">Confused</option>
+                <option value="neutral">Neutral</option>
+
+
             </select>
             <button type="submit">Submit</button>
         </form>
 
-        <h3>Your feelings from previous days:</h3>
-        <ul>
-            {% for date, feeling in feelings %}
-                <li>{{ date }}: {{ feeling }}</li>
-            {% endfor %}
-        </ul>
+        <!--{% if feelings %}
+            <h3>Your previous feelings:</h3>
+            <ul>
+                {% for date, feeling in feelings.items() %}
+                    <li>{{ date }}: {{ feeling }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}-->
 
         <a href="/logout">Logout</a>
     </div>
 </body>
 </html>
+
