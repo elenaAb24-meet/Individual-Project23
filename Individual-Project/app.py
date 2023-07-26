@@ -42,16 +42,35 @@ def signup():
         email = request.form['email']
         password = request.form['password']
         username = request.form['username']
+
         try:
             login_session['user'] = auth.create_user_with_email_and_password(email, password)
+            UID = login_session['user']['localId']
+            user = {'email': email, 'username': username}
+            db.child("Users").child(UID).set(user)
             return redirect(url_for('survey'))
+
         except:
             error = "Authentication failed"
     return render_template('signup.html')
 
 @app.route('/survey')
 def survey():
-    return render_template('survey.html')
+    UID = login_session['user']['localId']
+    user = db.child("Users").child(UID).get().val()
+    return render_template('survey.html', user = user['username'])
+
+@app.route('/logout', methods=['GET', 'POST'])
+def logout():
+    if request.method == 'GET':
+        return render_template('login.html')
+
+@app.route('/happy', methods=['GET', 'POST'])
+def happy():
+    if request.method == 'GET':
+        return render_template('happy.html')
+
+
 
 
 
