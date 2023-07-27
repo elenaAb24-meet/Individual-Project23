@@ -58,7 +58,7 @@ def signup():
 def survey():
     UID = login_session['user']['localId']
     user = db.child("Users").child(UID).get().val()
-    return render_template('survey.html', user = user['username'])
+    return render_template('survey.html') #, user = user['username']
 
 @app.route('/logout', methods=['GET', 'POST'])
 def logout():
